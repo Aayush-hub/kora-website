@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useCallback, useEffect, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
-import heroVideo from "@/assets/hero-video.mp4.asset.json";
+
 import heroImage from "@/assets/hero-farmhouse.jpg";
 import { useAmbientAudio } from "@/hooks/useAmbientAudio";
 
@@ -87,7 +87,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover"
           preload="auto"
         >
-          <source src={heroVideo.url} type="video/mp4" />
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
       </div>

@@ -1,6 +1,5 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import farmMorningVideo from "@/assets/farm-morning-video.mp4.asset.json";
 
 const freedomPoints = [
   { weekday: "Alarm at 6 AM, rush hour by 7", weekend: "Wake to birdsong, coffee on the veranda" },
@@ -23,7 +22,7 @@ const FreedomSection = () => {
           className="w-full h-full object-cover"
           preload="metadata"
         >
-          <source src={farmMorningVideo.url} type="video/mp4" />
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0" style={{ background: "hsl(var(--earth-deep) / 0.88)" }} />
       </div>

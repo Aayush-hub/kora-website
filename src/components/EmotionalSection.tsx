@@ -1,6 +1,5 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import farmhouseVideo from "@/assets/farmhouse-lifestyle-video.mp4.asset.json";
 
 const EmotionalSection = () => {
   const ref = useRef(null);
@@ -57,7 +56,7 @@ const EmotionalSection = () => {
                 className="w-full h-full object-cover"
                 preload="metadata"
               >
-                <source src={farmhouseVideo.url} type="video/mp4" />
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-earth-deep/30 to-transparent" />
             </motion.div>

@@ -1,8 +1,5 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import farmMorningVideo from "@/assets/farm-morning-video.mp4.asset.json";
-
-import cityLifeVideo from "@/assets/city-life-video.mp4.asset.json";
 
 const StorytellingSection = () => {
   const ref = useRef(null);
@@ -51,7 +48,7 @@ const StorytellingSection = () => {
                 className="w-full h-full object-cover"
                 preload="metadata"
               >
-                <source src={cityLifeVideo.url} type="video/mp4" />
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
               </video>
             </motion.div>
           </motion.div>
@@ -67,7 +64,7 @@ const StorytellingSection = () => {
                 className="w-full h-full object-cover"
                 preload="metadata"
               >
-                <source src={farmMorningVideo.url} type="video/mp4" />
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4" />
               </video>
             </motion.div>
           </motion.div>
