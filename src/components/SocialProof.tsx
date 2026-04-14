@@ -1,6 +1,9 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Star, Quote, Play, X } from "lucide-react";
+import testimonialVideo1 from "@/assets/testimonial-1.mp4";
+import testimonialVideo2 from "@/assets/testimonial-2.mp4";
+import testimonialVideo3 from "@/assets/testimonial-3.mp4";
 
 const testimonials = [
   {
@@ -8,21 +11,21 @@ const testimonials = [
     role: "Business Owner, Gurugram",
     text: "We bought 1 acre near Sohna last year. The value has already gone up 22%. But honestly, the weekends we spend there with family — that's the real return.",
     rating: 5,
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    video: testimonialVideo1,
   },
   {
     name: "Priya & Ankit Mehta",
     role: "IT Professionals, Noida",
     text: "We were tired of our apartment walls. Kora Living showed us a life we didn't know we were missing. Our kids now know what real grass feels like.",
     rating: 5,
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    video: testimonialVideo2,
   },
   {
     name: "Dr. Suresh Kapoor",
     role: "Surgeon, Delhi",
     text: "As a doctor, I deal with stress every day. My farmhouse at Kora is my therapy. It's the best investment I've ever made — for my wealth and my wellbeing.",
     rating: 5,
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    video: testimonialVideo3,
   },
 ];
 

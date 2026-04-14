@@ -1,5 +1,6 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import farmMorningVideo from "@/assets/farm-morning-video.mp4";
 
 const VideoBreakSection = () => {
   const ref = useRef(null);
@@ -22,7 +23,7 @@ const VideoBreakSection = () => {
           className="w-full h-full object-cover"
           preload="metadata"
         >
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
+          <source src={farmMorningVideo} type="video/mp4" />
         </video>
       </motion.div>
       <div className="absolute inset-0 bg-earth-deep/40 flex items-center justify-center">
