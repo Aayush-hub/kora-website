@@ -147,19 +147,19 @@ const ConversationalQuiz = () => {
     }
   }, [currentStep]);
 
-  const saveLead = async () => {
+  const saveLead = async (latestResponses = responses, currentScore = leadScore) => {
     setIsSubmitting(true);
     try {
-      const score = leadScore;
+      const score = currentScore;
       const tier = score >= 15 ? "hot" : score >= 10 ? "warm" : "exploring";
 
       const { error } = await supabase.from("leads").insert({
-        name: responses.name || null,
-        phone: responses.phone || null,
-        intent: responses.intent || null,
-        budget: responses.budget || null,
-        timeline: responses.timeline || null,
-        location: responses.location || null,
+        name: latestResponses.name || null,
+        phone: latestResponses.phone || null,
+        intent: latestResponses.intent || null,
+        budget: latestResponses.budget || null,
+        timeline: latestResponses.timeline || null,
+        location: latestResponses.location || null,
         lead_score: score,
         lead_tier: tier,
         status: "new",
@@ -167,10 +167,8 @@ const ConversationalQuiz = () => {
 
       if (error) throw error;
       setIsSubmitted(true);
-      toast.success("Thank you! Our team will reach out shortly.");
     } catch (err) {
       console.error("Error saving lead:", err);
-      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -187,10 +185,15 @@ const ConversationalQuiz = () => {
   const handleText = () => {
     if (!textInput.trim()) return;
     const q = questions[currentStep];
-    setResponses((prev) => ({ ...prev, [q.scoreKey || q.id]: textInput }));
+    const newResponses = { ...responses, [q.scoreKey || q.id]: textInput };
+    setResponses(newResponses);
     setMessages((prev) => [...prev, { type: "user", text: textInput }]);
     setTextInput("");
     setCurrentStep((prev) => prev + 1);
+
+    if (q.scoreKey === "phone") {
+      saveLead(newResponses, leadScore);
+    }
   };
 
   const progress = Math.min((currentStep / (questions.length - 1)) * 100, 100);
@@ -307,7 +310,7 @@ const ConversationalQuiz = () => {
               </motion.div>
             )}
 
-            {isComplete && !isSubmitted && (
+            {isComplete && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -315,26 +318,17 @@ const ConversationalQuiz = () => {
               >
                 <div className="flex items-center gap-2 text-forest">
                   <CheckCircle2 size={20} />
-                  <span className="text-sm font-body font-medium">Thank you for your responses!</span>
+                  <span className="text-sm font-body font-medium">Thank you for your response</span>
                 </div>
                 <button
                   className="btn-primary w-full"
-                  onClick={saveLead}
-                  disabled={isSubmitting}
+                  onClick={() => {
+                    const message = encodeURIComponent("Hi! I'm interested in Kora Living farmland plots. Can you share more details?");
+                    window.open(`https://wa.me/919992511098?text=${message}`, '_blank');
+                  }}
                 >
-                  {isSubmitting ? "Submitting..." : leadScore >= 15 ? "Book Site Visit" : "Get Details"}
+                  {leadScore >= 15 ? "Book Site Visit" : "Get Details on WhatsApp"}
                 </button>
-              </motion.div>
-            )}
-
-            {isSubmitted && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex items-center justify-center gap-2 text-forest py-2"
-              >
-                <CheckCircle2 size={20} />
-                <span className="text-sm font-body font-medium">Submitted! We'll contact you soon.</span>
               </motion.div>
             )}
           </div>
