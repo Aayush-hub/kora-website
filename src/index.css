@@ -64,11 +64,18 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
   }
 }
@@ -100,6 +107,7 @@
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
   }
+
   .btn-primary:hover {
     background: hsl(var(--forest-light));
     transform: translateY(-2px);
@@ -113,6 +121,7 @@
     color: hsl(var(--primary));
     background: transparent;
   }
+
   .btn-outline:hover {
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
@@ -140,6 +149,7 @@
   .divider-leaf {
     @apply flex items-center justify-center gap-4 py-8;
   }
+
   .divider-leaf::before,
   .divider-leaf::after {
     content: '';
@@ -150,36 +160,94 @@
 
 /* Smooth section reveal animations */
 @keyframes float-gentle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes typing-dot {
-  0%, 60%, 100% { opacity: 0.3; transform: scale(0.8); }
-  30% { opacity: 1; transform: scale(1); }
+
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes slide-up-reveal {
-  from { opacity: 0; transform: translateY(60px) scale(0.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes unfold {
-  from { opacity: 0; transform: perspective(1200px) rotateX(-8deg) translateY(40px); transform-origin: top center; }
-  to { opacity: 1; transform: perspective(1200px) rotateX(0deg) translateY(0); transform-origin: top center; }
+  from {
+    opacity: 0;
+    transform: perspective(1200px) rotateX(-8deg) translateY(40px);
+    transform-origin: top center;
+  }
+
+  to {
+    opacity: 1;
+    transform: perspective(1200px) rotateX(0deg) translateY(0);
+    transform-origin: top center;
+  }
 }
 
 @keyframes counter-tick {
-  0% { transform: translateY(100%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.animate-float { animation: float-gentle 6s ease-in-out infinite; }
-.animate-fade-up { animation: fade-up 0.8s ease-out forwards; }
-.animate-slide-up { animation: slide-up-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.animate-unfold { animation: unfold 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-float {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-unfold {
+  animation: unfold 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

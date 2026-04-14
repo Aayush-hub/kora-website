@@ -18,13 +18,15 @@ const FreedomSection = () => {
     <section className="relative overflow-hidden" ref={ref}>
       {/* Video background */}
       <div className="absolute inset-0">
-        <video
-          autoPlay muted loop playsInline webkit-playsinline=""
-          className="w-full h-full object-cover"
-          preload="metadata"
-        >
-          <source src={farmMorningVideo} type="video/mp4" />
-        </video>
+        {inView && (
+          <video
+            autoPlay muted loop playsInline webkit-playsinline=""
+            className="w-full h-full object-cover"
+            preload="metadata"
+          >
+            <source src={farmMorningVideo} type="video/mp4" />
+          </video>
+        )}
         <div className="absolute inset-0" style={{ background: "hsl(var(--earth-deep) / 0.88)" }} />
       </div>
 

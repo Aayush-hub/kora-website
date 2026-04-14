@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 interface QuizQuestion {
   id: string;
@@ -100,6 +102,8 @@ const ConversationalQuiz = () => {
   const [isTyping, setIsTyping] = useState(true);
   const [textInput, setTextInput] = useState("");
   const [leadScore, setLeadScore] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = useCallback(() => {
@@ -110,7 +114,6 @@ const ConversationalQuiz = () => {
   }, []);
 
   useEffect(() => {
-    // Use requestAnimationFrame to ensure DOM has updated
     requestAnimationFrame(() => {
       scrollToBottom();
     });
@@ -133,8 +136,8 @@ const ConversationalQuiz = () => {
         tier === "hot"
           ? `Amazing, ${responses.name || "friend"}! Based on what you've told me, I can see you're serious about this. You qualify for an exclusive site visit. Let me connect you with our land advisor right away.`
           : tier === "warm"
-          ? `Thank you, ${responses.name || "friend"}! You're clearly thinking about this the right way. Let me send you our detailed project brochure and available plots.`
-          : `Thank you for your interest, ${responses.name || "friend"}! I'll share some information about Kora Living so you can explore at your own pace.`;
+            ? `Thank you, ${responses.name || "friend"}! You're clearly thinking about this the right way. Let me send you our detailed project brochure and available plots.`
+            : `Thank you for your interest, ${responses.name || "friend"}! I'll share some information about Kora Living so you can explore at your own pace.`;
 
       const timer = setTimeout(() => {
         setIsTyping(false);
@@ -143,6 +146,35 @@ const ConversationalQuiz = () => {
       return () => clearTimeout(timer);
     }
   }, [currentStep]);
+
+  const saveLead = async () => {
+    setIsSubmitting(true);
+    try {
+      const score = leadScore;
+      const tier = score >= 15 ? "hot" : score >= 10 ? "warm" : "exploring";
+
+      const { error } = await supabase.from("leads").insert({
+        name: responses.name || null,
+        phone: responses.phone || null,
+        intent: responses.intent || null,
+        budget: responses.budget || null,
+        timeline: responses.timeline || null,
+        location: responses.location || null,
+        lead_score: score,
+        lead_tier: tier,
+        status: "new",
+      });
+
+      if (error) throw error;
+      setIsSubmitted(true);
+      toast.success("Thank you! Our team will reach out shortly.");
+    } catch (err) {
+      console.error("Error saving lead:", err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleOption = (option: { label: string; value: string; score: number }) => {
     const q = questions[currentStep];
@@ -275,7 +307,7 @@ const ConversationalQuiz = () => {
               </motion.div>
             )}
 
-            {isComplete && (
+            {isComplete && !isSubmitted && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -287,10 +319,22 @@ const ConversationalQuiz = () => {
                 </div>
                 <button
                   className="btn-primary w-full"
-                  onClick={() => alert(`Thank you! Our team will contact ${responses.name} at ${responses.phone}`)}
+                  onClick={saveLead}
+                  disabled={isSubmitting}
                 >
-                  {leadScore >= 15 ? "Book Site Visit" : "Get Details"}
+                  {isSubmitting ? "Submitting..." : leadScore >= 15 ? "Book Site Visit" : "Get Details"}
                 </button>
+              </motion.div>
+            )}
+
+            {isSubmitted && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center justify-center gap-2 text-forest py-2"
+              >
+                <CheckCircle2 size={20} />
+                <span className="text-sm font-body font-medium">Submitted! We'll contact you soon.</span>
               </motion.div>
             )}
           </div>

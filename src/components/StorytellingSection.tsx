@@ -45,13 +45,15 @@ const StorytellingSection = () => {
             className="rounded-2xl overflow-hidden aspect-[4/3]"
           >
             <motion.div style={{ y: parallax1 }} className="w-full h-full scale-105">
-              <video
-                autoPlay muted loop playsInline webkit-playsinline=""
-                className="w-full h-full object-cover"
-                preload="metadata"
-              >
-                <source src={cityLifeVideo} type="video/mp4" />
-              </video>
+              {inView && (
+                <video
+                  autoPlay muted loop playsInline webkit-playsinline=""
+                  className="w-full h-full object-cover"
+                  preload="metadata"
+                >
+                  <source src={cityLifeVideo} type="video/mp4" />
+                </video>
+              )}
             </motion.div>
           </motion.div>
           <motion.div
@@ -61,13 +63,15 @@ const StorytellingSection = () => {
             className="rounded-2xl overflow-hidden aspect-[4/3]"
           >
             <motion.div style={{ y: parallax2 }} className="w-full h-full scale-105">
-              <video
-                autoPlay muted loop playsInline webkit-playsinline=""
-                className="w-full h-full object-cover"
-                preload="metadata"
-              >
-                <source src={farmMorningVideo} type="video/mp4" />
-              </video>
+              {inView && (
+                <video
+                  autoPlay muted loop playsInline webkit-playsinline=""
+                  className="w-full h-full object-cover"
+                  preload="metadata"
+                >
+                  <source src={farmMorningVideo} type="video/mp4" />
+                </video>
+              )}
             </motion.div>
           </motion.div>
         </div>

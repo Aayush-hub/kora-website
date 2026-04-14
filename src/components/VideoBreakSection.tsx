@@ -14,17 +14,19 @@ const VideoBreakSection = () => {
   return (
     <section ref={ref} className="relative h-[70vh] md:h-[80vh] overflow-hidden">
       <motion.div style={{ y }} className="absolute inset-0 scale-110">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          webkit-playsinline=""
-          className="w-full h-full object-cover"
-          preload="metadata"
-        >
-          <source src={farmMorningVideo} type="video/mp4" />
-        </video>
+        {inView && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            webkit-playsinline=""
+            className="w-full h-full object-cover"
+            preload="metadata"
+          >
+            <source src={farmMorningVideo} type="video/mp4" />
+          </video>
+        )}
       </motion.div>
       <div className="absolute inset-0 bg-earth-deep/40 flex items-center justify-center">
         <motion.div
