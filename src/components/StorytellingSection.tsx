@@ -44,6 +44,7 @@ const StorytellingSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="rounded-2xl overflow-hidden aspect-[4/3]"
           >
+            <motion.div style={{ y: parallax1 }} className="w-full h-full scale-105">
               <video
                 autoPlay muted loop playsInline webkit-playsinline=""
                 className="w-full h-full object-cover"
@@ -59,6 +60,7 @@ const StorytellingSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="rounded-2xl overflow-hidden aspect-[4/3]"
           >
+            <motion.div style={{ y: parallax2 }} className="w-full h-full scale-105">
               <video
                 autoPlay muted loop playsInline webkit-playsinline=""
                 className="w-full h-full object-cover"

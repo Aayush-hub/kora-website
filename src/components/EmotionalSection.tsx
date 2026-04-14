@@ -47,6 +47,7 @@ const EmotionalSection = () => {
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
+            <motion.div style={{ y: imageY }} className="relative rounded-2xl overflow-hidden aspect-[4/5]">
               <video
                 autoPlay
                 muted

@@ -13,6 +13,7 @@ const VideoBreakSection = () => {
 
   return (
     <section ref={ref} className="relative h-[70vh] md:h-[80vh] overflow-hidden">
+      <motion.div style={{ y }} className="absolute inset-0 scale-110">
         <video
           autoPlay
           muted

@@ -16,6 +16,8 @@ const FreedomSection = () => {
 
   return (
     <section className="relative overflow-hidden" ref={ref}>
+      {/* Video background */}
+      <div className="absolute inset-0">
         <video
           autoPlay muted loop playsInline webkit-playsinline=""
           className="w-full h-full object-cover"
