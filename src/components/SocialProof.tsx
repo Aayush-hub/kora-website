@@ -90,7 +90,6 @@ const SocialProof = () => {
                 className="relative rounded-xl overflow-hidden aspect-video mb-6 cursor-pointer"
                 onClick={() => setActiveVideo(t.video)}
               >
-                {inView && (
                   <video
                     src={t.video}
                     className="w-full h-full object-cover"
@@ -98,9 +97,8 @@ const SocialProof = () => {
                     loop
                     playsInline
                     muted
-                    preload="metadata"
+                    preload="auto"
                   />
-                )}
                 <div className="absolute inset-0 bg-earth-deep/40 flex items-center justify-center group-hover:bg-earth-deep/30 transition-colors duration-300">
                   <div className="w-14 h-14 rounded-full bg-cream/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <Play size={20} className="text-forest ml-0.5" />
